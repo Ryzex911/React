@@ -1,13 +1,27 @@
-import React from 'react'
-import './navbar.css'
-import logo from '/src/assets/logo.png'
-import arrow_icon from '/src/assets/arrow_icon.png'
+import React, { useContext } from 'react';
+import './navbar.css';
+import logo from '/src/assets/logo.png';
+import arrow_icon from '/src/assets/arrow_icon.png';
+import { CoinContext } from "../../context/CoinContext.jsx"; // Corrected the import
 
 const Navbar = () => {
-    return (
+    const { setCurrency } = useContext(CoinContext); // Fixed context import
 
-        //hierbij heb ik een navbar gemaakt na het importeren van de logo van de assets folder
-        //en dan gelinkt naar me paginas en daarna opties gemaakt om de currentie te veranderen
+    const currencyHandler = (event) => {
+        switch(event.target.value){
+            case "USD":
+                setCurrency({ name: "usd", symbol: "$" });
+                break;
+            case "EUR": // Fixed value to EUR
+                setCurrency({ name: "eur", symbol: "€" });
+                break;
+            default: // Fixed typo 'deafult' to 'default'
+                setCurrency({ name: "usd", symbol: "$" }); // default to USD
+                break;
+        }
+    };
+
+    return (
         <div className="navbar">
             <img src={logo} alt="logo van pagina" className="logo"/>
             <ul>
@@ -17,15 +31,16 @@ const Navbar = () => {
                 <li>Blog</li>
             </ul>
             <div className="navbar-right">
-                <select>
-                <option value="USD">USD</option>
-                <option value="USD">EUR</option>
+                <select onChange={currencyHandler}> {/* Fixed onChange */}
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option> {/* Corrected to EUR */}
                 </select>
-                <button>Sign up <img src={arrow_icon} alt="arrow icon foto"/> </button>
+                <button>
+                    Sign up <img src={arrow_icon} alt="arrow icon foto"/>
+                </button>
             </div>
-
         </div>
-    )
-
+    );
 }
-export default Navbar
+
+export default Navbar;
