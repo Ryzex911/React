@@ -3,6 +3,7 @@ import './navbar.css';
 import logo from '/src/assets/logo.png';
 import arrow_icon from '/src/assets/arrow_icon.png';
 import { CoinContext } from "../../context/CoinContext.jsx"; // Corrected the import
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const { setCurrency } = useContext(CoinContext); // Fixed context import
@@ -23,17 +24,21 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
+            <Link to={'/'}>
             <img src={logo} alt="logo van pagina" className="logo"/>
+            </Link>
+
             <ul>
-                <li>Home</li>
+                <Link to={'/'}><li>Home</li></Link>
                 <li>Features</li>
                 <li>Pricing</li>
                 <li>Blog</li>
             </ul>
             <div className="navbar-right">
-                <select onChange={currencyHandler}> {/* Fixed onChange */}
+                <select onChange={currencyHandler}>
                     <option value="USD">USD</option>
-                    <option value="EUR">EUR</option> {/* Corrected to EUR */}
+                    <option value="EUR">EUR</option>
+                    {/* Corrected to EUR */}
                 </select>
                 <button>
                     Sign up <img src={arrow_icon} alt="arrow icon foto"/>

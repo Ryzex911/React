@@ -1,20 +1,20 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { createContext, useState, useEffect } from 'react';
 
 export const CoinContext = createContext();
 
 const CoinContextProvider = (props) => {
     const [allCoins, setAllCoins] = useState([]);
     const [currency, setCurrency] = useState({
-        name: "usd",
-        symbol: "$",
+        name: 'usd',
+        symbol: '$',
     });
 
     const fetchAllCoin = async () => {
         const options = {
-            method: "GET",
+            method: 'GET',
             headers: {
-                accept: "application/json",
-                "x-cg-demo-api-key": "CG-YoGaxZa7pATJ8soCtEmneB6E",
+                accept: 'application/json',
+                'x-cg-demo-api-key': 'CG-YoGaxZa7pATJ8soCtEmneB6E', // Replace with your API key
             },
         };
 
@@ -24,15 +24,15 @@ const CoinContextProvider = (props) => {
                 options
             );
             const data = await response.json();
-            setAllCoins(data);  // Set the fetched data into state
+            setAllCoins(data);
         } catch (err) {
-            console.error("Error fetching data:", err);  // Log the error if fetching fails
+            console.error(err);
         }
     };
 
     useEffect(() => {
         fetchAllCoin();
-    }, [currency]);  // Run fetchAllCoin whenever the currency changes
+    }, [currency]);
 
     const contextValue = {
         allCoins,

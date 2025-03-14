@@ -1,24 +1,48 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './home.css';
-import { CoinContext } from "../../context/CoinContext.jsx";
+import { CoinContext } from '../../context/CoinContext.jsx';
+import {Link} from 'react-router-dom';
 
 const Home = () => {
-    const { allCoin, currency } = useContext(CoinContext);
-    const [displayCoin, setDisplayCoin] = React.useState([]);
+    const { allCoins, currency } = useContext(CoinContext);
+    const [displayCoin, setDisplayCoin] = useState([]);
+    const [input, setInput] = useState('');
+
+    const handleInputChange = (event) => {
+        setInput(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (!input.trim()) {
+            setDisplayCoin(allCoins); // Reset when input is empty
+            return;
+        }
+        const coins = allCoins.filter((item) =>
+            item.name.toLowerCase().includes(input.toLowerCase())
+        );
+        setDisplayCoin(coins);
+    };
 
     useEffect(() => {
-        if (Array.isArray(allCoin)) {
-            setDisplayCoin(allCoin);
+        if (allCoins && allCoins.length > 0) {
+            setDisplayCoin(allCoins);
         }
-    }, [allCoin, currency]);
+    }, [allCoins, currency]);
 
     return (
         <div className='home'>
             <div className='hero'>
                 <h1>Welcome <br /> to CryptoDashboard</h1>
                 <p>The best place to see and inspect cryptocurrencies</p>
-                <form>
-                    <input type="text" placeholder="Search" />
+                <form onSubmit={handleSubmit}>
+                    <input
+                        onChange={handleInputChange}
+                        value={input}
+                        type="text"
+                        placeholder="Search"
+                        required
+                    />
                     <button type="submit">Search</button>
                 </form>
             </div>
@@ -28,28 +52,31 @@ const Home = () => {
                     <p>#</p>
                     <p>Coins</p>
                     <p>Price</p>
-                    <p style={{ textAlign: "center" }}>24H Change</p>
+                    <p style={{ textAlign: 'center' }}>24H Change</p>
                     <p className='market-cap'>Market Cap</p>
                 </div>
 
-                {
-                    Array.isArray(displayCoin) && displayCoin.length > 0 ? (
-                        displayCoin.slice(0, 10).map((item, index) => (
-                            <div className='table-layout' key={index}>
-                                <p>{item.market_cap_rank}</p>
-                                <p>{item.name}</p>
-                                <p>{item.current_price}</p>
-                                <p>{item.price_change_percentage_24h}</p>
-                                <p>{item.market_cap}</p>
+                {displayCoin.length > 0 ? (
+                    displayCoin.slice(0, 10).map((item, index) => (
+                        <Link to={`/coin/${item.id}`} className='table-layout' key={index}>
+                            <p>{item.market_cap_rank}</p>
+                            <div>
+                                <img src={item.image} alt="" />
+                                <p>{item.name} - {item.symbol}</p>
                             </div>
-                        ))
-                    ) : (
-                        <p>Loading...</p>  // Show loading message if displayCoin is not populated
-                    )
-                }
+                            <p>{currency.symbol} {item.current_price.toLocaleString()}</p>
+                            <p className={item.price_change_percentage_24h > 0 ? 'green' : 'red'}>
+                                {Math.floor(item.price_change_percentage_24h * 100) / 100}%
+                            </p>
+                            <p className='market-cap'>{currency.symbol} {item.market_cap.toLocaleString()}</p>
+                        </Link>
+                    ))
+                ) : (
+                    <p style={{ textAlign: 'center', marginTop: '20px' }}>No results found.</p>
+                )}
             </div>
         </div>
     );
-}
+};
 
 export default Home;
