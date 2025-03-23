@@ -1,3 +1,4 @@
+/* General Styles */
 .home {
     padding: 0px 10px;
     padding-bottom: 100px;
@@ -23,8 +24,8 @@
     line-height: 1.5;
 }
 
-.hero form{
-    padding:8px;
+.hero form {
+    padding: 8px;
     width: 80%;
     background-color: white;
     border-radius: 5px;
@@ -57,68 +58,129 @@
     background: #6019e0;
 }
 
+/* Table Layout */
 .crypto-table {
     max-width: 900px;
-    margin:auto;
-    background: linear-gradient(rgba(84, 3, 255, 0.15), rgba(105, 2, 155, 0.15));
+    margin: auto;
+    background: linear-gradient(rgba(0, 111, 255, 0.15), rgba(99, 147, 188, 0.15));
     border-radius: 10px;
 }
 
-.table-layout {
+.table-header {
     display: grid;
-    grid-template-columns:0.5fr 2fr 1fr 1fr 1.5fr;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr 1fr;
     padding: 15px 20px;
     align-items: center;
     border-bottom: 1px solid #3c3c3c;
 }
 
+.table-layout {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr 1fr;
+    padding: 15px 20px;
+    align-items: center;
+    border-bottom: 1px solid #3c3c3c;
+}
+
+.table-layout div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-layout div img {
+    width: 35px;
+}
+
+.coin-details {
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.coin-details p {
+    margin-left: 80px;
+    position: relative;
+    top: -30px;
+}
+
 .market-cap {
     text-align: right;
 }
-.table-layout:last-child{
-    border-bottom: none;
 
+.green {
+    color: #00ff00;
+    text-align: center;
 }
 
-    .table-layout div{
-        display: flex;
-        align-items: center;
-        gap: 10px;
+.red {
+    color: #ff0000;
+    text-align: center;
+}
+
+.favorite-container {
+    text-align: center;
+    margin-left: 30px;
+}
+.favo-text {
+   margin-left: 45px;
+}
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination span {
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .table-layout {
+        grid-template-columns: 0.5fr 3fr 1fr 1fr;
     }
 
-    .table-layout div img{
-        width: 35px;
+    .market-cap {
+        display: none;
+    }
+}
 
+@media (max-width: 500px) {
+    .table-layout div img {
+        width: 25px;
     }
 
-
-    .table-layout .green {
-        color: #00ff00;
-        text-align: center;
+    .table-layout {
+        font-size: 13px;
     }
 
-    .table-layout .red {
-        color: #ff0000;
-        text-align: center;
+    .hero form input {
+        width: 100px;
     }
-
-
-        @media (max-width: 768px){ .table-layout{
-        }
-            grid-template-columns: 0.5fr 3fr 1fr 1fr;
-            .market-cap{
-                display: none;
-            }
-        }
-
-        @media (max-width: 500px){
-
-        .table-layout div img{ width: 25px;
-        }
-        .table-layout {
-            font-size: 13px;
-        }
-        .hero form input {
-            width: 100px;
-        }
-        }
+}

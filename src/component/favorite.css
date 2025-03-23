@@ -1,0 +1,36 @@
+.favorite-btn {
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.favorite-btn.favorite {
+    background-color: gold;
+}
+
+.favorite-btn:hover {
+    background-color: #6a56d9;
+}
+
+.favorites {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.favorites ul {
+    list-style: none;
+    padding: 0;
+}
+
+.favorites li {
+    margin: 10px 0;
+}
+
+.favorites li img {
+    width: 300px;
+}  dont change my alr made css and also use the colors fro the home page
