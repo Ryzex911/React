@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./favorite.css";
 
@@ -26,8 +26,12 @@ const Favorites = () => {
     }, []);
 
     const handleRemoveFavorite = (coinID) => {
-        const updatedFavorites = favorites.filter(id => id !== coinID);
+        const updatedFavorites = [...favorites.filter(id => id !== coinID)];
         setFavorites(updatedFavorites);
+
+        const updatedCoinData = [...coinData.filter(coin => coin.id !== coinID)];
+        setCoinData(updatedCoinData);
+
         localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     };
 
@@ -35,7 +39,7 @@ const Favorites = () => {
         <div className="favorites">
             <h1>⭐ My Favorite Coins</h1>
             {favorites.length === 0 ? (
-                <p>You haven't added any favorite coins yet.</p>
+                <p>You havebt added any favorite coins yet.</p>
             ) : (
                 <ul className="favorites-list">
                     {coinData.map((coin) => (

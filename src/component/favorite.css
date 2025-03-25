@@ -32,5 +32,42 @@
 }
 
 .favorites li img {
-    width: 300px;
-}  dont change my alr made css and also use the colors fro the home page
+    width: 150px;
+}
+
+
+
+.favorites-list {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+}
+
+.remove-btn {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    gap: 20px;
+    border: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.favorite-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.favorite-item img {
+    width: 150px;
+    margin-bottom: 10px;
+}
