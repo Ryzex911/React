@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './home.css';
+import './Home.css';
 import { CoinContext } from '../../context/CoinContext.jsx';
 import { Link } from 'react-router-dom';
-import FavoriteButton from '../../component/favoritebutton.jsx';
+import FavoriteButton from '../../component/Favoritebutton.jsx';
 const Home = () => {
     const { allCoins, currency } = useContext(CoinContext);
     const [displayCoin, setDisplayCoin] = useState([]);

@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import './coin.css';
+import './Coin.css';
 import { useParams } from 'react-router-dom';
 import { CoinContext } from '../../context/CoinContext';
 import LineChart from '../../component/LineChart/LineChart';
-import FavoriteButton from '../../component/favoritebutton.jsx';
+import FavoriteButton from '../../component/Favoritebutton.jsx';
 
 const Coin = () => {
     const { coinID } = useParams();

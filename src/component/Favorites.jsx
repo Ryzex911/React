@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./favorite.css";
+import "./Favorite.css";
 
 const Favorites = () => {
     const [favorites, setFavorites] = useState([]);
