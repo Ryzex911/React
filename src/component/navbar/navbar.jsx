@@ -31,7 +31,7 @@ const Navbar = () => {
             <ul>
                 <Link to={'/'}><li>Home</li></Link>
                 <Link to="/favorites"><li>Favorite</li></Link>
-                <li>Pricing</li>
+                <Link to={"/top10"}>Top 10</Link>
                 <li>Blog</li>
             </ul>
             <div className="navbar-right">
@@ -40,9 +40,6 @@ const Navbar = () => {
                     <option value="EUR">EUR</option>
                     {/* Corrected to EUR */}
                 </select>
-                <button>
-                    Sign up <img src={arrow_icon} alt="arrow icon foto"/>
-                </button>
             </div>
         </div>
     );
